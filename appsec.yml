@@ -1,0 +1,11 @@
+version: 0.0
+os: ubuntu
+
+Hooks:
+- ApplicationStop:
+timeout: 300
+runas: root
+
+- AfterInstall:
+timeout: 300
+runas: root
