@@ -9,5 +9,5 @@ hooks:
 
 - AfterInstall:
    - location: scripts/start_container.sh
-    timeout: 300
-     runas: root
+      timeout: 300
+       runas: root
