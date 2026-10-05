@@ -1,7 +1,7 @@
 version: 0.0
 os: ubuntu
 
-Hooks:
+hooks:
  ApplicationStop:
  - location: scripts/stop_container.sh
     timeout: 300
