@@ -1,26 +1,17 @@
 
 #!/bin/bash
-set -euo pipefail
+set -e
 
-DOCKER="/usr/bin/docker"
-IMAGE="mrudulaav/simple-python-application"
-CONTAINER="simple-python-application"
+# Pull the Docker image
+/usr/bin/docker pull mrudulaav/simple-python-application
 
-# Ensure Docker is running
-systemctl start docker
+# Remove the old container if it exists
+/usr/bin/docker rm -f simple-python-application 2>/dev/null || true
 
-# Pull the latest application image
-"$DOCKER" pull "$IMAGE"
-
-# Remove the previous container if it exists
-"$DOCKER" rm -f "$CONTAINER" 2>/dev/null || true
-
-# Start the application container
-"$DOCKER" run -d \
-  --name "$CONTAINER" \
-  --restart unless-stopped \
+# Start the container
+/usr/bin/docker run -d \
+  --name simple-python-application \
   -p 5000:5000 \
-  "$IMAGE"
+  mrudulaav/simple-python-application
 
-# Verify the container is running
-"$DOCKER" ps --filter "name=$CONTAINER"
+echo "Container started successfully"
